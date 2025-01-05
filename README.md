@@ -1,3 +1,12 @@
+Student ID 012129939
+
+Angular CLI: 19.0.6
+Node: 22.12.0
+Package Manager: npm 11.0.0
+OS: darwin arm64
+
+Angular: 19.0.5
+
 # ProjectTest
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.5.
