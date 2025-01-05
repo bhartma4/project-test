@@ -2,6 +2,9 @@ nav {
     margin: auto;
     text-align: center;
     background: gray;
+    box-shadow: 0 0 0 2px #333; /* Simulates a "filled border" */
+    border-radius: 8px; /* Optional: rounded corners */
+    display: fixed;
     margin-top: 10px;
     margin-top: 2px;
     text-align: center;

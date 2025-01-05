@@ -1,1 +1,6 @@
-<p>home-info works!</p>
+<h2>Country Data</h2>
+<ul>
+    @for (post of posts$ | async; track post.id) {
+    <li>{{ post.title }}</li>
+    }
+</ul>
