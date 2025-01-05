@@ -1,0 +1,10 @@
+svg {
+    margin: 0;
+    padding: 0;
+}
+svg path {
+    cursor: pointer;
+}
+svg path:hover{
+    fill:blue
+}
