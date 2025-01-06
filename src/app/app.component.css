@@ -1,7 +1,7 @@
 nav {
     margin: auto;
     text-align: center;
-    background: gray;
+    background: blanchedalmond;
     box-shadow: 0 0 0 2px #333; /* Simulates a "filled border" */
     border-radius: 8px; /* Optional: rounded corners */
     display: fixed;
@@ -11,7 +11,19 @@ nav {
     font-family: Arial, Helvetica, sans-serif;
 }
 
-/*.grid-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  } */
+.info {
+    background: blanchedalmond;
+    box-shadow: 0 0 0 2px black;
+    border-radius: 8px;
+    width: 25%;
+    float: right;
+}
+
+.map {
+    width: 75%;
+    float: left;
+}
+
+ul {
+    list-style-type: none;
+}
