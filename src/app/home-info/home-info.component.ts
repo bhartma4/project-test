@@ -12,4 +12,7 @@ export class HomeInfoComponent {
   private configService = inject(ConfigService);
 
   posts$ = this.configService.getPosts();
+  trackByFn(index: number, item: any): number | string {
+    return item.id || index; // Use a unique identifier like `id` or fallback to the index
+  }
 }

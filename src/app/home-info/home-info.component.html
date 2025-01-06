@@ -1,6 +1,11 @@
-<h2>Country Data</h2>
-<ul>
-    @for (post of posts$ | async; track post.id) {
-    <li>{{ post.title }}</li>
-    }
-</ul>
+<div>
+    <h2>Country Data</h2>
+    <ul>
+        <li *ngFor="let country of posts$ | async; trackBy: trackByFn">
+            <p>{{ country.name }} ({{ country.id }})</p>
+            <p>{{ country.capitalCity}}</p>
+            <p>{{ country.region.value}}</p>
+            <p>{{ country.incomeLevel.value}}</p>
+        </li>
+    </ul>
+</div>
