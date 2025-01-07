@@ -1,11 +1,39 @@
-<div>
-    <h2>User Input</h2>
-    <ul>
-        <li *ngFor="let country of posts$ | async; trackBy: trackByFn">
-            <p>{{ country.name }} ({{ country.id }})</p>
-            <p>{{ country.capitalCity}}</p>
-            <p>{{ country.region.value}}</p>
-            <p>{{ country.incomeLevel.value}}</p>
-        </li>
-    </ul>
+<div class="container">
+    <h2>Country Info Finder</h2>
+  
+    <form [formGroup]="countryForm" (ngSubmit)="onSubmit()">
+      <label for="countryCode">Enter Country Code:</label>
+      <input id="countryCode" formControlName="countryCode" placeholder="e.g., CA" />
+      <button type="submit">Get Country Info</button>
+    </form>
+    
+    <div *ngIf="errorMessage" class="error">
+      {{ errorMessage }}
+    </div>
+    
+    <div *ngIf="countryData && !errorMessage" class="country-info">
+      <h2>Country Information</h2>
+      <ul>
+        <li>
+        <strong>ID:</strong> {{ countryData.id }}<br />
+        <strong>ISO Code:</strong> {{ countryData.iso2Code }}<br />
+        <strong>Name:</strong> {{ countryData.name }}<br />
+        <strong>Region ID:</strong> {{ countryData.region.id }}<br />
+        <strong>Region iso2code:</strong> {{ countryData.region.iso2code }}<br />
+        <strong>Region Value:</strong> {{ countryData.region.value }}<br />
+        <strong>Admin Region ID:</strong> {{ countryData.adminregion.id }}<br />
+        <strong>Admin Region iso2code:</strong> {{ countryData.adminregion.iso2code }}<br />
+        <strong>Admin Region Value:</strong> {{ countryData.adminregion.value }}<br />
+        <strong>Income Level ID:</strong> {{ countryData.incomeLevel.id }}<br />
+        <strong>Income Level iso2code:</strong> {{ countryData.incomeLevel.iso2code }}<br />
+        <strong>Income Level Value:</strong> {{ countryData.incomeLevel.value }}<br />
+        <strong>Lending Type ID:</strong> {{ countryData.lendingType.id }}<br />
+        <strong>Lending Type iso2code:</strong> {{ countryData.lendingType.iso2code }}<br />
+        <strong>Lending Type Value:</strong> {{ countryData.lendingType.value }}<br />
+        <strong>Capital City:</strong> {{ countryData.lendingType.iso2code }}<br />
+        <strong>Latitude:</strong> {{ countryData.latitude }}<br />
+        <strong>Longitude:</strong> {{ countryData.longitude }}<br />
+      </li>
+      </ul>
+    </div>
 </div>

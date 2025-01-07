@@ -14,3 +14,19 @@ nav {
 ul {
     list-style-type: none;
 }
+
+.container {
+    
+    background: blanchedalmond;
+    box-shadow: 0 0 0 2px black;
+    border-radius: 8px;
+    width: 25%;
+    float: bottom;
+    float: right;
+    margin-top: 20px;
+}
+
+h2 {
+    text-align: center;
+}
+

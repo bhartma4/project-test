@@ -2,16 +2,27 @@ ul {
     list-style-type: none;
 }
 
-div{
+
+h2 {
+    text-align: center;
+}
+
+
+.container {
+    
     background: blanchedalmond;
     box-shadow: 0 0 0 2px black;
     border-radius: 8px;
     width: 25%;
-    position: absolute;
-    right: 0;
-    bottom: 0;
+    float: bottom;
+    float: right;
+    margin-top: 20px;
 }
 
 h2 {
+    text-align: center;
+}
+
+form {
     text-align: center;
 }

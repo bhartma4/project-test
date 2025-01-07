@@ -516,9 +516,13 @@
             <ul>
                   <li *ngFor="let data of countryData">
                   <strong>Name:</strong> {{ data.name }}<br />
-                  <strong>Captial:</strong> {{ data.capitalCity }}<br />
+                  <strong>Country ID:</strong> {{ data.id }}<br />
+                  <strong>Country iso2code :</strong> {{ data.iso2Code }}<br />
+                  <strong>Capital:</strong> {{ data.capitalCity }}<br />
                   <strong>Region:</strong> {{ data.region.value }}<br />
                   <strong>Income Level:</strong> {{ data.incomeLevel.value }}
                   </li>
             </ul>
       </div>
+
+      

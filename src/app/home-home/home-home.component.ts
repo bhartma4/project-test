@@ -1,12 +1,11 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { CountryService } from '../services/country.service'; // Adjust the path as needed
 
 @Component({
   selector: 'app-home-home',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule],
   templateUrl: './home-home.component.html',
   styleUrls: ['./home-home.component.css']
 })
@@ -16,26 +15,26 @@ export class HomeHomeComponent implements AfterViewInit {
   countryInfo: any = null;
   countryData: any[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private countryService: CountryService) {}
 
   ngAfterViewInit(): void {
     this.addEventListenersToPaths();
   }
 
   addEventListenersToPaths(): void {
-    const svgElement = this.worldMap.nativeElement; // Ensures it's of type SVGElement
-    const pathElements = svgElement.querySelectorAll('path'); // Query all <path> elements in the SVG
+    const svgElement = this.worldMap.nativeElement;
+    const pathElements = svgElement.querySelectorAll('path');
 
     pathElements.forEach((path) => {
       const pathId = path.getAttribute('id');
 
       if (!pathId || pathId === 'null') {
-        return; // Skip paths without valid IDs
+        return;
       }
 
       // Add event listeners for mouseover, mouseout, and click events
       path.addEventListener('mouseover', (event) => this.onMouseOver(event));
-      path.addEventListener('mouseout', (event) => this.onMouseOut(event));
+      path.addEventListener('mouseout', (event) => this.onMouseOut());
       path.addEventListener('click', (event) => this.onClick(event));
     });
   }
@@ -43,32 +42,33 @@ export class HomeHomeComponent implements AfterViewInit {
   onMouseOver(event: MouseEvent): void {
     const target = event.target as SVGPathElement;
     const pathId = target.getAttribute('id');
-  
+
     if (!pathId) return;
-  
-    this.http.get<any[]>(`https://api.worldbank.org/V2/country/${pathId}?format=json`).subscribe(
+
+    this.countryService.getCountryData(pathId).subscribe(
       (response) => {
         if (response.length > 1) {
           this.hoveredCountryName = response[1][0].name;
-          this.countryData = response[1]; // Store the array in countryData
+          this.countryData = response[1];
         } else {
           this.hoveredCountryName = null;
-          this.countryData = []; // Clear data if no valid response
+          this.countryData = [];
         }
       },
       (error) => {
         console.error('Error fetching data:', error);
-        this.countryData = []; // Clear data on error
+        this.hoveredCountryName = null;
+        this.countryData = [];
       }
     );
   }
 
-  onMouseOut(event: MouseEvent): void {
-    this.hoveredCountryName = null; // Clear hovered country name on mouse out
+  onMouseOut(): void {
+    this.hoveredCountryName = null;
   }
 
   onClick(event: MouseEvent): void {
-    const target = event.target as SVGPathElement; // Cast event target as an SVGPathElement
+    const target = event.target as SVGPathElement;
     const pathId = target.getAttribute('id');
 
     if (!pathId || pathId === 'null') {
@@ -78,7 +78,7 @@ export class HomeHomeComponent implements AfterViewInit {
 
     console.log(`${pathId} clicked`);
 
-    this.http.get<any[]>(`https://api.worldbank.org/V2/country/${pathId}?format=json`).subscribe(
+    this.countryService.getCountryData(pathId).subscribe(
       (response) => {
         if (response.length > 1) {
           this.countryInfo = response[1][0];
@@ -88,6 +88,7 @@ export class HomeHomeComponent implements AfterViewInit {
       },
       (error) => {
         console.error('Error fetching data:', error);
+        this.countryInfo = null;
       }
     );
   }
