@@ -1,10 +1,28 @@
 svg {
-    width: 100%;
+    width: 75%;
+    float: left;
 }
 svg path {
     cursor: pointer;
 }
 svg path:hover{
     fill:blue
+}
+
+div {
+    width: 25%;
+    float: right;
+    background: blanchedalmond;
+    box-shadow: 0 0 0 2px black;
+    border-radius: 8px;
+    
+}
+
+ul {
+    list-style-type: none;
+}
+
+h2 {
+    text-align: center;
 }
 
